@@ -1,0 +1,11 @@
+# 本地环境与运行产物
+.venv/
+.hf_cache/
+__pycache__/
+*.pyc
+runtime/
+*.log
+.env
+
+# 向量模型体积大，部署时单独处理
+models/

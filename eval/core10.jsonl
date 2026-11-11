@@ -1,0 +1,10 @@
+{"id": "A01", "type": "A", "question": "在校学生参加勤工助学，工作时间有什么限制？", "key_points": ["每周不超过8小时", "每月不超过40小时"], "source_docs": ["1357-2083"], "expect_no_hit": false}
+{"id": "A06", "type": "A", "question": "硕士研究生申请学位，答辩申请书最晚什么时候交？", "key_points": ["应在预定答辩一个半月前提交"], "source_docs": ["1354-2067"], "expect_no_hit": false}
+{"id": "A07", "type": "A", "question": "汕大本科生修读辅修或双学位怎么收费？", "key_points": ["100元/学分", "辅修或双学位证书必须与主修专业学位证书同时获得"], "source_docs": ["1354-2153"], "expect_no_hit": false}
+{"id": "A11", "type": "A", "question": "校友想回学校拍婚纱照，需要提前多久预约？申请表发到哪里？", "key_points": ["拍摄前三个工作日提交预约申请", "发送至o_xyh@stu.edu.cn", "在不影响学校正常教学的情况下拍摄"], "source_docs": ["1364-2008"], "expect_no_hit": false}
+{"id": "B01", "type": "B", "question": "我是汕大学生，想申请校园地国家助学贷款，应该怎么办理？", "key_points": ["登录学生事务管理平台newsao.stu.edu.cn提交贫困生认定申请和贷款申请", "提交《广东省家庭经济困难学生认定申请表》原件、本人及父母身份证复印件、学生证第二三页复印件、中国银行借记卡复印件", "书院审查后由书院总院助学工作管理中心复审并公示名单", "与中国银行签订贷款合同（书院老师见证）", "毕业或离校前与银行签订还款确认材料"], "source_docs": ["1373-2025"], "expect_no_hit": false}
+{"id": "B05", "type": "B", "question": "教职工想开车进汕头大学，车辆登记怎么办理？", "key_points": ["从保卫处网页下载填写《汕头大学车辆通行登记表》", "提交驾驶证和车辆行驶证复印件", "向归属单位提交审核、签字盖章", "保卫处核查汇总归档，录入进出校园车辆管理系统"], "source_docs": ["1360-1975"], "expect_no_hit": false}
+{"id": "C01", "type": "C", "question": "生源地信用助学贷款和校园地国家助学贷款有什么区别？我该怎么选？", "key_points": ["生源地：登录国家开发银行学生在线系统www.csls.cdb.com.cn申请", "生源地：在户籍所在地县级资助中心签合同，首贷需与共同借款人双方同去", "校园地：登录学生事务管理平台newsao.stu.edu.cn申请", "校园地：与中国银行签贷款合同，书院老师见证", "两者都需先做家庭经济困难认定"], "source_docs": ["1373-2024", "1373-2025"], "expect_no_hit": false}
+{"id": "D01", "type": "D", "question": "学校今年寒假什么时候开始放假？", "expect": "refuse_with_guidance", "source_docs": [], "expect_no_hit": true}
+{"id": "D04", "type": "D", "question": "学校食堂早餐几点开始供应？", "expect": "refuse_with_guidance", "source_docs": [], "expect_no_hit": true}
+{"id": "D07", "type": "D", "question": "研究生想申请校内宿舍，怎么办理？", "expect": "refuse_with_guidance", "source_docs": [], "expect_no_hit": true}

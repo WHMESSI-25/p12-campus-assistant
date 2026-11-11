@@ -1,0 +1,354 @@
+{
+  "generated_at": "2026-11-11 14:25:55",
+  "passed": 3,
+  "total": 10,
+  "total_cost_cny": 0.08898,
+  "budget": {
+    "total_spent_cny": 0.143544,
+    "total_remaining_cny": 1.856456,
+    "total_cap_cny": 2.0,
+    "daily_spent_cny": 0.143544,
+    "daily_remaining_cny": 0.656456,
+    "daily_cap_cny": 0.8,
+    "total_calls": 11
+  },
+  "results": [
+    {
+      "id": "A01",
+      "question": "在校学生参加勤工助学，工作时间有什么限制？",
+      "ok": true,
+      "no_hit_expected": false,
+      "no_hit_actual": false,
+      "missing_key_points": [],
+      "answer": "根据资料，每位学生参加勤工助学的时间原则上每周不超过8小时，每月不超过40小时（资料2）。",
+      "checklist": null,
+      "sources": [
+        {
+          "doc_id": "1357-2083",
+          "title": "汕头大学校内勤工助学岗位设置申请表",
+          "category": "学生工作",
+          "url": "https://info.stu.edu.cn/info/1357/2083.htm",
+          "score": 0.6431470513343811
+        }
+      ],
+      "cost_cny": 0.01114,
+      "elapsed": 13.5,
+      "truncated": false
+    },
+    {
+      "id": "A06",
+      "question": "硕士研究生申请学位，答辩申请书最晚什么时候交？",
+      "ok": false,
+      "no_hit_expected": false,
+      "no_hit_actual": false,
+      "missing_key_points": [
+        "应在预定答辩一个半月前提交"
+      ],
+      "answer": "硕士研究生申请学位，答辩申请书应在预定答辩一个半月前向学科提交（资料2）。",
+      "checklist": null,
+      "sources": [
+        {
+          "doc_id": "1354-2067",
+          "title": "汕头大学硕士研究生申请学位流程",
+          "category": "教学管理",
+          "url": "https://info.stu.edu.cn/info/1354/2067.htm",
+          "score": 0.5725235342979431
+        }
+      ],
+      "cost_cny": 0.012468,
+      "elapsed": 0.9,
+      "truncated": false
+    },
+    {
+      "id": "A07",
+      "question": "汕大本科生修读辅修或双学位怎么收费？",
+      "ok": false,
+      "no_hit_expected": false,
+      "no_hit_actual": false,
+      "missing_key_points": [
+        "辅修或双学位证书必须与主修专业学位证书同时获得"
+      ],
+      "answer": "辅修/双学位按选课学分收费，标准为100元/学分（资料2）。开设双学位/辅修专业的教务员在学分制系统中导出选课缴费表、计算缴费金额后，送财务处缴费（资料1）。",
+      "checklist": null,
+      "sources": [
+        {
+          "doc_id": "1354-2153",
+          "title": "教务处教学管理工作手册",
+          "category": "教学管理",
+          "url": "https://info.stu.edu.cn/info/1354/2153.htm",
+          "score": 0.8111399412155151
+        }
+      ],
+      "cost_cny": 0.013696,
+      "elapsed": 1.4,
+      "truncated": false
+    },
+    {
+      "id": "A11",
+      "question": "校友想回学校拍婚纱照，需要提前多久预约？申请表发到哪里？",
+      "ok": false,
+      "no_hit_expected": false,
+      "no_hit_actual": false,
+      "missing_key_points": [
+        "在不影响学校正常教学的情况下拍摄"
+      ],
+      "answer": "校友返校拍摄婚纱照需在拍摄前三个工作日提交预约申请（资料1），将申请表发送至 o_xyh@stu.edu.cn（资料1）。校友办收到申请后会提前向保卫处申请校友进校，并抄送校友（资料1）。",
+      "checklist": {
+        "title": "校友返校拍摄婚纱照申请",
+        "steps": [
+          "填写《汕大校友返校拍摄婚纱照申请表》，注明拍摄时间等信息（资料1）",
+          "在拍摄前三个工作日将申请表发送至 o_xyh@stu.edu.cn（资料1）",
+          "校友办收到申请后提前向保卫处申请校友进校，同时抄送校友（资料1）",
+          "拍摄结束后发送1-2张校园婚纱照片至 o_xyh@stu.edu.cn（资料1）"
+        ],
+        "materials": [
+          "汕大校友返校拍摄婚纱照申请表（资料1）",
+          "拍摄结束后需提供1-2张校园婚纱照片（资料1）"
+        ],
+        "location": "",
+        "deadline": "拍摄前三个工作日提交预约申请（资料1）",
+        "notes": [
+          "拍摄须在不影响学校正常教学情况下进行，若有冲突，拍摄需做调整（资料1）",
+          "校友办电话：（0754）86502180，邮箱：o_xyh@stu.edu.cn（资料1）"
+        ]
+      },
+      "sources": [
+        {
+          "doc_id": "1364-2008",
+          "title": "校友返校拍摄婚纱照申请表",
+          "category": "校友工作",
+          "url": "https://info.stu.edu.cn/info/1364/2008.htm",
+          "score": 0.7107592225074768
+        }
+      ],
+      "cost_cny": 0.013724,
+      "elapsed": 2.3,
+      "truncated": false
+    },
+    {
+      "id": "B01",
+      "question": "我是汕大学生，想申请校园地国家助学贷款，应该怎么办理？",
+      "ok": false,
+      "no_hit_expected": false,
+      "no_hit_actual": false,
+      "missing_key_points": [
+        "登录学生事务管理平台newsao.stu.edu.cn提交贫困生认定申请和贷款申请",
+        "提交《广东省家庭经济困难学生认定申请表》原件、本人及父母身份证复印件、学生证第二三页复印件、中国银行借记卡复印件",
+        "书院审查后由书院总院助学工作管理中心复审并公示名单",
+        "与中国银行签订贷款合同（书院老师见证）",
+        "毕业或离校前与银行签订还款确认材料"
+      ],
+      "answer": "校园地国家助学贷款需先在学生事务管理平台（https://newsao.stu.edu.cn）提交贫困生认定申请和贷款申请，并向所在书院提交书面材料（资料1）。书院审查通过后公示名单，经书院总院助学工作管理中心复审，再由学生与银行签订贷款合同（书院老师见证）（资料1）。",
+      "checklist": {
+        "title": "汕头大学校园地国家助学贷款申请",
+        "steps": [
+          "登录学生事务管理平台（https://newsao.stu.edu.cn）提交贫困生认定申请和贷款申请（资料1）",
+          "向所在书院提交书面材料（资料1）",
+          "书院审查学生是否符合申请条件、材料是否符合要求，不通过则退还学生完善材料（资料1）",
+          "公示申请贷款学生名单，书院总院助学工作管理中心复审（资料1）",
+          "助学工作管理中心准备贷款合同、借据等合同签订材料，学生与银行签订贷款合同，书院老师见证（资料1）",
+          "银行审批通过后按学年将贷款划到指定账户，财务处集中办理缴费手续，助学工作管理中心公布放款情况、发放贷款合同和借据（资料1）"
+        ],
+        "materials": [
+          "《广东省家庭经济困难学生认定申请表》原件（资料1）",
+          "本人及父母有效居民身份证复印件（资料1）",
+          "学生证第二、三页复印件（资料1）",
+          "中国银行借记卡复印件等（资料1）"
+        ],
+        "location": "学生事务管理平台（https://newsao.stu.edu.cn）及所在书院（资料1）",
+        "deadline": "",
+        "notes": [
+          "书院审查不通过会退还学生完善材料（资料1）",
+          "学生毕业或退学、开除等学籍变动离校前须与银行签订还款确认材料（资料1）",
+          "助学工作管理中心每年夏季学期整理贷款学生学籍异动情况等材料报银行审批（资料1）",
+          "学生按照约定还款，学校协助银行追贷（资料1）"
+        ]
+      },
+      "sources": [
+        {
+          "doc_id": "1373-2025",
+          "title": "汕头大学校园地国家助学贷款管理流程",
+          "category": "综合管理",
+          "url": "https://info.stu.edu.cn/info/1373/2025.htm",
+          "score": 0.7522669434547424
+        }
+      ],
+      "cost_cny": 0.0,
+      "elapsed": 0.0,
+      "truncated": false
+    },
+    {
+      "id": "B05",
+      "question": "教职工想开车进汕头大学，车辆登记怎么办理？",
+      "ok": false,
+      "no_hit_expected": false,
+      "no_hit_actual": false,
+      "missing_key_points": [
+        "从保卫处网页下载填写《汕头大学车辆通行登记表》",
+        "提交驾驶证和车辆行驶证复印件",
+        "向归属单位提交审核、签字盖章",
+        "保卫处核查汇总归档，录入进出校园车辆管理系统"
+      ],
+      "answer": "教职工办理车辆登记，需先下载填写《汕头大学车辆通行登记表》，经归属单位审核盖章后，连同驾驶证和车辆行驶证复印件提交保卫处，由保卫处核查、汇总、归档、注册并录入进出校园车辆管理系统（资料1）。",
+      "checklist": {
+        "title": "车辆登记申请",
+        "steps": [
+          "从保卫处网页下载、打印、填写《汕头大学车辆通行登记表》（资料1）",
+          "向归属单位提交《登记表》及驾驶证和车辆行驶证复印件（资料1）",
+          "归属单位审核后签字并盖章（资料1）",
+          "将审核后的《登记表》、驾驶证和车辆行驶证复印件提交保卫处（资料1）",
+          "保卫处核查、汇总、归档、注册并录入进出校园车辆管理系统（资料1）"
+        ],
+        "materials": [
+          "《汕头大学车辆通行登记表》（资料1）",
+          "驾驶证复印件（资料1）",
+          "车辆行驶证复印件（资料1）"
+        ],
+        "location": "保卫处（资料1）",
+        "deadline": "",
+        "notes": [
+          "《登记表》需经归属单位审核后签字并盖章（资料1）"
+        ]
+      },
+      "sources": [
+        {
+          "doc_id": "1360-1975",
+          "title": "车辆登记申请流程",
+          "category": "后勤基建",
+          "url": "https://info.stu.edu.cn/info/1360/1975.htm",
+          "score": 0.757919192314148
+        }
+      ],
+      "cost_cny": 0.0132,
+      "elapsed": 1.8,
+      "truncated": false
+    },
+    {
+      "id": "C01",
+      "question": "生源地信用助学贷款和校园地国家助学贷款有什么区别？我该怎么选？",
+      "ok": false,
+      "no_hit_expected": false,
+      "no_hit_actual": false,
+      "missing_key_points": [
+        "生源地：登录国家开发银行学生在线系统www.csls.cdb.com.cn申请",
+        "生源地：在户籍所在地县级资助中心签合同，首贷需与共同借款人双方同去",
+        "校园地：登录学生事务管理平台newsao.stu.edu.cn申请",
+        "校园地：与中国银行签贷款合同，书院老师见证",
+        "两者都需先做家庭经济困难认定"
+      ],
+      "answer": "两者在办理地点、申请系统和材料上不同：生源地信用助学贷款由学生每年暑假登录国家开发银行学生在线服务系统（www.csls.cdb.com.cn）申请，并与共同借款人到户籍所在地县级资助中心签订合同（资料1）；校园地国家助学贷款由学生登录汕头大学学生事务管理平台（https://newsao.stu.edu.cn）提交贫困生认定和贷款申请，并向所在书院提交书面材料，经书院、助学工作管理中心审核后与银行签订合同（资料2）。资料未给出两者如何选择的建议，请结合自身情况咨询书院或助学工作管理中心。",
+      "checklist": null,
+      "sources": [
+        {
+          "doc_id": "1373-2024",
+          "title": "国家开发银行生源地信用助学贷款管理流程",
+          "category": "综合管理",
+          "url": "https://info.stu.edu.cn/info/1373/2024.htm",
+          "score": 0.6506055593490601
+        },
+        {
+          "doc_id": "1373-2025",
+          "title": "汕头大学校园地国家助学贷款管理流程",
+          "category": "综合管理",
+          "url": "https://info.stu.edu.cn/info/1373/2025.htm",
+          "score": 0.6191675662994385
+        }
+      ],
+      "cost_cny": 0.01226,
+      "elapsed": 2.0,
+      "truncated": false
+    },
+    {
+      "id": "D01",
+      "question": "学校今年寒假什么时候开始放假？",
+      "ok": true,
+      "no_hit_expected": true,
+      "no_hit_actual": true,
+      "missing_key_points": [],
+      "answer": "办事指南知识库中没有找到与该问题相关的资料，无法回答。建议到汕头大学信息公开网（info.stu.edu.cn）查询，或直接咨询学校相关职能部门。",
+      "checklist": null,
+      "sources": [],
+      "cost_cny": 0.0,
+      "elapsed": 0.0,
+      "truncated": false
+    },
+    {
+      "id": "D04",
+      "question": "学校食堂早餐几点开始供应？",
+      "ok": true,
+      "no_hit_expected": true,
+      "no_hit_actual": true,
+      "missing_key_points": [],
+      "answer": "办事指南知识库中没有找到与该问题相关的资料，无法回答。建议到汕头大学信息公开网（info.stu.edu.cn）查询，或直接咨询学校相关职能部门。",
+      "checklist": null,
+      "sources": [],
+      "cost_cny": 0.0,
+      "elapsed": 0.0,
+      "truncated": false
+    },
+    {
+      "id": "D07",
+      "question": "研究生想申请校内宿舍，怎么办理？",
+      "ok": false,
+      "no_hit_expected": true,
+      "no_hit_actual": false,
+      "missing_key_points": [],
+      "answer": "办事指南知识库中没有找到相关资料。",
+      "checklist": null,
+      "sources": [
+        {
+          "doc_id": "1363-1948",
+          "title": "出国（境）学习项目学生离返校备案表",
+          "category": "对外交流与合作",
+          "url": "https://info.stu.edu.cn/info/1363/1948.htm",
+          "score": 0.5855153203010559
+        },
+        {
+          "doc_id": "1354-2068",
+          "title": "汕头大学博士研究生申请学位流程",
+          "category": "教学管理",
+          "url": "https://info.stu.edu.cn/info/1354/2068.htm",
+          "score": 0.5331734418869019
+        },
+        {
+          "doc_id": "1357-2086",
+          "title": "汕头大学家庭经济困难学生认定管理流程",
+          "category": "学生工作",
+          "url": "https://info.stu.edu.cn/info/1357/2086.htm",
+          "score": 0.553375244140625
+        },
+        {
+          "doc_id": "1356-2004",
+          "title": "各项业务办事指南汇编",
+          "category": "人事工作",
+          "url": "https://info.stu.edu.cn/info/1356/2004.htm",
+          "score": 0.5219961404800415
+        },
+        {
+          "doc_id": "1353-1964",
+          "title": "申诉答辩通知书",
+          "category": "工会工作",
+          "url": "https://info.stu.edu.cn/info/1353/1964.htm",
+          "score": 0.5347210764884949
+        },
+        {
+          "doc_id": "1353-1967",
+          "title": "教职工校内申诉流程",
+          "category": "工会工作",
+          "url": "https://info.stu.edu.cn/info/1353/1967.htm",
+          "score": 0.5376700758934021
+        },
+        {
+          "doc_id": "1354-2067",
+          "title": "汕头大学硕士研究生申请学位流程",
+          "category": "教学管理",
+          "url": "https://info.stu.edu.cn/info/1354/2067.htm",
+          "score": 0.5169742107391357
+        }
+      ],
+      "cost_cny": 0.012492,
+      "elapsed": 1.1,
+      "truncated": false
+    }
+  ]
+}

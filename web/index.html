@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>汕大办事助手</title>
+<style>
+  :root {
+    --ink: #17202a;
+    --muted: #687385;
+    --line: #e2e8f0;
+    --brand: #0b5cab;
+    --brand-deep: #084887;
+    --teal: #0f766e;
+    --bg: #f3f7fc;
+    --card: #ffffff;
+    --soft: #eef4ff;
+    --warn: #fff7ed;
+    --warn-line: #fdba74;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    font-family: "Microsoft YaHei", "PingFang SC", system-ui, -apple-system, sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(circle at 12% 0%, rgba(11, 92, 171, .10), transparent 34%),
+      radial-gradient(circle at 100% 18%, rgba(15, 118, 110, .08), transparent 30%),
+      var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+  button, input, textarea { font: inherit; }
+  button { cursor: pointer; }
+  .page { min-height: 100dvh; display: flex; justify-content: center; }
+  .app {
+    width: 100%;
+    max-width: 880px;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, .74);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, .7), 0 20px 60px rgba(23, 32, 42, .08);
+  }
+  .topbar {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 14px 18px;
+    background: rgba(255, 255, 255, .88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(226, 232, 240, .9);
+  }
+  .brand { display: flex; align-items: center; gap: 11px; min-width: 0; }
+  .logo {
+    width: 42px; height: 42px; flex: 0 0 auto;
+    border-radius: 14px;
+    display: grid; place-items: center;
+    color: #fff; font-size: 20px; font-weight: 800;
+    background: linear-gradient(145deg, var(--brand), var(--teal));
+    box-shadow: 0 8px 18px rgba(11, 92, 171, .22);
+  }
+  .brand h1 { margin: 0; font-size: 17px; letter-spacing: -.2px; }
+  .brand p { margin: 2px 0 0; font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .badge {
+    flex: 0 0 auto;
+    font-size: 11px; color: var(--brand-deep); font-weight: 700;
+    background: var(--soft); border: 1px solid #d5e4fb;
+    border-radius: 999px; padding: 5px 9px;
+  }
+  #chat { flex: 1; overflow-y: auto; padding: 18px 16px 26px; scroll-behavior: smooth; }
+  .welcome { padding: 22px 6px 8px; }
+  .eyebrow { font-size: 12px; letter-spacing: 1.4px; color: var(--teal); font-weight: 800; margin-bottom: 10px; }
+  .welcome h2 { margin: 0; font-size: 29px; line-height: 1.22; letter-spacing: -1px; }
+  .welcome .sub { margin: 10px 0 18px; color: var(--muted); font-size: 14px; line-height: 1.7; max-width: 560px; }
+  .chips { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; max-width: 680px; }
+  .chip {
+    text-align: left;
+    padding: 11px 12px;
+    border: 1px solid var(--line);
+    border-radius: 13px;
+    background: rgba(255, 255, 255, .85);
+    color: var(--ink);
+    font-size: 13.5px;
+    line-height: 1.45;
+    box-shadow: 0 2px 8px rgba(23, 32, 42, .03);
+    transition: .16s ease;
+  }
+  .chip:hover { border-color: #b9d0ee; background: #fff; transform: translateY(-1px); }
+  .chip small { display: block; color: var(--muted); font-size: 11.5px; margin-top: 3px; }
+  .tip { margin-top: 14px; color: var(--muted); font-size: 12.5px; line-height: 1.6; }
+  .msg { display: flex; gap: 9px; margin: 18px 0; align-items: flex-start; }
+  .msg.user { justify-content: flex-end; }
+  .avatar {
+    width: 30px; height: 30px; flex: 0 0 auto; border-radius: 10px;
+    display: grid; place-items: center; font-size: 13px; font-weight: 800;
+    color: #fff; background: linear-gradient(145deg, var(--brand), var(--teal));
+    margin-top: 2px;
+  }
+  .bubble {
+    max-width: 88%;
+    border-radius: 17px;
+    padding: 12px 14px;
+    font-size: 15px;
+    line-height: 1.75;
+    word-break: break-word;
+  }
+  .user .bubble { background: var(--brand); color: #fff; border-bottom-right-radius: 5px; }
+  .bot .bubble {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-bottom-left-radius: 5px;
+    box-shadow: 0 4px 16px rgba(23, 32, 42, .04);
+    min-width: 0;
+  }
+  .bot .bubble.refuse { background: var(--warn); border-color: var(--warn-line); }
+  .answer { white-space: pre-wrap; }
+  .checklist {
+    margin-top: 13px;
+    border: 1px solid #d8e6f7;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #f8fbff;
+  }
+  .cl-head {
+    padding: 11px 13px 10px;
+    background: linear-gradient(135deg, #e8f1ff, #edfaf7);
+    border-bottom: 1px solid #d8e6f7;
+  }
+  .cl-kicker { display: block; font-size: 10.5px; letter-spacing: 1.4px; color: var(--brand); font-weight: 800; }
+  .cl-title { display: block; margin-top: 3px; font-size: 15px; font-weight: 800; }
+  .cl-body { padding: 2px 13px 12px; }
+  .cl-section { margin-top: 11px; }
+  .cl-section h4 { margin: 0 0 5px; font-size: 11.5px; letter-spacing: .6px; color: var(--muted); }
+  .check-row { display: flex; gap: 7px; align-items: flex-start; padding: 5px 0; font-size: 13.5px; line-height: 1.55; }
+  .check-row input { margin: 3px 0 0; accent-color: var(--brand); flex: 0 0 auto; }
+  .step-no {
+    flex: 0 0 auto; width: 18px; height: 18px; border-radius: 6px;
+    display: grid; place-items: center; margin-top: 1px;
+    background: #e3edfb; color: var(--brand-deep); font-size: 10.5px; font-weight: 800;
+  }
+  .cl-plain { margin: 4px 0; font-size: 13.5px; line-height: 1.6; }
+  .cl-notes { margin: 0; padding-left: 17px; font-size: 13.5px; line-height: 1.6; }
+  .sources { margin-top: 12px; padding-top: 10px; border-top: 1px dashed #d5deea; }
+  .sources-title { font-size: 11.5px; color: var(--muted); margin-bottom: 5px; }
+  .source-link {
+    display: inline-flex; align-items: center;
+    margin: 2px 8px 3px 0;
+    color: var(--brand); font-size: 12.5px; text-decoration: none;
+    background: #f2f7ff; border: 1px solid #dce9fb; border-radius: 999px;
+    padding: 3px 9px;
+  }
+  .source-link:hover { text-decoration: underline; }
+  .feedback { margin-top: 10px; display: flex; align-items: center; gap: 7px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
+  .fb-btn {
+    border: 1px solid var(--line); background: #fff; color: #475467;
+    border-radius: 999px; padding: 4px 10px; font-size: 12px;
+  }
+  .fb-btn:hover { border-color: #b9d0ee; }
+  .fb-btn.selected { border-color: var(--brand); color: var(--brand); background: #eef5ff; font-weight: 700; }
+  .fb-comment { display: none; width: 100%; margin-top: 7px; }
+  .fb-comment.show { display: block; }
+  .fb-comment textarea {
+    width: 100%; min-height: 62px; resize: vertical;
+    border: 1px solid #cfdbea; border-radius: 10px; padding: 8px 10px;
+    font-size: 13px; outline: none; background: #fff;
+  }
+  .fb-comment textarea:focus { border-color: var(--brand); }
+  .fb-actions { display: flex; gap: 7px; margin-top: 6px; }
+  .fb-actions button { border: 0; border-radius: 8px; padding: 6px 11px; font-size: 12px; }
+  .fb-submit { background: var(--brand); color: #fff; }
+  .fb-cancel { background: #eef1f5; color: #475467; }
+  .fb-thanks { color: var(--teal); font-size: 12px; }
+  .loading { color: var(--muted); font-size: 13px; display: flex; align-items: center; gap: 7px; }
+  .dots { display: inline-flex; gap: 3px; }
+  .dots i { width: 5px; height: 5px; border-radius: 50%; background: #8aa3c0; animation: blink 1.1s infinite; }
+  .dots i:nth-child(2) { animation-delay: .18s; }
+  .dots i:nth-child(3) { animation-delay: .36s; }
+  @keyframes blink { 0%, 80%, 100% { opacity: .25; } 40% { opacity: 1; } }
+  .error-box { background: #fff7ed; border: 1px solid #fdba74; color: #7c2d12; }
+  .composer {
+    position: sticky; bottom: 0; z-index: 9;
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, .92);
+    backdrop-filter: blur(14px);
+    border-top: 1px solid rgba(226, 232, 240, .9);
+  }
+  .input-row {
+    display: flex; align-items: center; gap: 7px;
+    background: #fff; border: 1px solid #cfd9e7; border-radius: 15px;
+    padding: 5px 5px 5px 12px;
+    box-shadow: 0 8px 24px rgba(23, 32, 42, .05);
+  }
+  .input-row:focus-within { border-color: #8eb8e8; box-shadow: 0 0 0 3px rgba(11, 92, 171, .08); }
+  #q { flex: 1; min-width: 0; border: 0; outline: none; background: transparent; padding: 9px 0; font-size: 15px; color: var(--ink); }
+  #q::placeholder { color: #98a2b3; }
+  .send {
+    flex: 0 0 auto; border: 0; border-radius: 11px;
+    padding: 9px 15px; background: var(--brand); color: #fff;
+    font-size: 14px; font-weight: 700;
+  }
+  .send:disabled { opacity: .5; cursor: wait; }
+  .footnote { margin: 7px 2px 0; color: #8a94a6; font-size: 11px; line-height: 1.5; text-align: center; }
+  @media (max-width: 600px) {
+    .topbar { padding: 11px 14px; }
+    .brand h1 { font-size: 16px; }
+    .brand p { font-size: 11px; }
+    #chat { padding: 12px 12px 20px; }
+    .welcome { padding: 16px 3px 4px; }
+    .welcome h2 { font-size: 24px; }
+    .welcome .sub { font-size: 13px; margin-bottom: 14px; }
+    .chips { gap: 7px; }
+    .chip { font-size: 12.5px; padding: 9px 10px; }
+    .bubble { max-width: 92%; font-size: 14.5px; }
+    .composer { padding-left: 10px; padding-right: 10px; }
+  }
+  @media (max-width: 390px) {
+    .chips { grid-template-columns: 1fr; }
+    .badge { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">汕</div>
+        <div>
+          <h1>汕大办事助手</h1>
+          <p>回答带出处 · 办事有清单</p>
+        </div>
+      </div>
+      <span class="badge">试用版</span>
+    </header>
+
+    <main id="chat">
+      <section class="welcome" id="welcome">
+        <div class="eyebrow">STU CAMPUS GUIDE</div>
+        <h2>办事之前，<br>先问一句。</h2>
+        <p class="sub">基于学校公开办事指南回答，关键信息附原文出处；知识库没有的内容会明确说明，不编造。</p>
+        <div class="chips" id="chips">
+          <button class="chip" data-q="在校学生参加勤工助学，工作时间有什么限制？">勤工助学每周最多几小时？<small>工时与岗位规定</small></button>
+          <button class="chip" data-q="我是汕大学生，想申请校园地国家助学贷款，应该怎么办理？">校园地助学贷款怎么办理？<small>流程与材料</small></button>
+          <button class="chip" data-q="教职工想开车进汕头大学，车辆登记怎么办理？">车辆进校登记怎么办理？<small>申请流程</small></button>
+          <button class="chip" data-q="生源地信用助学贷款和校园地国家助学贷款有什么区别？我该怎么选？">两种助学贷款有什么区别？<small>对比与选择</small></button>
+        </div>
+        <p class="tip">回答来自学校信息公开网，试用版额度有限，请按真实问题提问。</p>
+      </section>
+    </main>
+
+    <div class="composer">
+      <div class="input-row">
+        <input id="q" maxlength="200" placeholder="输入你的办事问题，回车发送…" autocomplete="off">
+        <button class="send" id="send">发送</button>
+      </div>
+      <p class="footnote">回答基于公开办事指南；没有依据的内容会明确拒答。请勿输入个人敏感信息。</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const chat = document.getElementById('chat');
+const welcome = document.getElementById('welcome');
+const qBox = document.getElementById('q');
+const sendBtn = document.getElementById('send');
+let busy = false;
+
+function getSessionId() {
+  let id = localStorage.getItem('p12_session');
+  if (!id) {
+    id = (crypto.randomUUID && crypto.randomUUID()) || ('s-' + Date.now() + '-' + Math.random().toString(16).slice(2));
+    localStorage.setItem('p12_session', id);
+  }
+  return id;
+}
+const sessionId = getSessionId();
+
+function el(tag, className, text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text !== undefined && text !== null) node.textContent = String(text);
+  return node;
+}
+
+function scrollBottom() {
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function hideWelcome() {
+  if (welcome && welcome.parentNode) welcome.remove();
+}
+
+function addUser(text) {
+  const msg = el('div', 'msg user');
+  const bubble = el('div', 'bubble');
+  bubble.textContent = text;
+  msg.appendChild(bubble);
+  chat.appendChild(msg);
+  scrollBottom();
+}
+
+function addLoading() {
+  const msg = el('div', 'msg bot');
+  msg.appendChild(el('div', 'avatar', '汕'));
+  const bubble = el('div', 'bubble');
+  const wrap = el('div', 'loading');
+  wrap.appendChild(el('span', '', '正在查办事指南'));
+  const dots = el('span', 'dots');
+  for (let i = 0; i < 3; i++) dots.appendChild(el('i'));
+  wrap.appendChild(dots);
+  bubble.appendChild(wrap);
+  msg.appendChild(bubble);
+  chat.appendChild(msg);
+  scrollBottom();
+  return msg;
+}
+
+function addError(text) {
+  const msg = el('div', 'msg bot');
+  msg.appendChild(el('div', 'avatar', '汕'));
+  const bubble = el('div', 'bubble error-box');
+  bubble.textContent = text;
+  msg.appendChild(bubble);
+  chat.appendChild(msg);
+  scrollBottom();
+}
+
+function section(title, className) {
+  const box = el('div', 'cl-section ' + (className || ''));
+  box.appendChild(el('h4', '', title));
+  return box;
+}
+
+function checkRow(text, index) {
+  const row = el('label', 'check-row');
+  const input = document.createElement('input');
+  input.type = 'checkbox';
+  row.appendChild(input);
+  if (index !== undefined) row.appendChild(el('span', 'step-no', String(index)));
+  row.appendChild(el('span', '', text));
+  return row;
+}
+
+function renderChecklist(cl) {
+  if (!cl) return null;
+  const has = cl.title || (cl.steps && cl.steps.length) || (cl.materials && cl.materials.length) ||
+              cl.location || cl.deadline || (cl.notes && cl.notes.length);
+  if (!has) return null;
+
+  const card = el('div', 'checklist');
+  const head = el('div', 'cl-head');
+  head.appendChild(el('span', 'cl-kicker', '办事清单'));
+  head.appendChild(el('span', 'cl-title', cl.title || '本次事项'));
+  card.appendChild(head);
+
+  const body = el('div', 'cl-body');
+  if (cl.steps && cl.steps.length) {
+    const sec = section('办理步骤');
+    cl.steps.forEach((s, i) => sec.appendChild(checkRow(s, i + 1)));
+    body.appendChild(sec);
+  }
+  if (cl.materials && cl.materials.length) {
+    const sec = section('需要准备');
+    cl.materials.forEach(s => sec.appendChild(checkRow(s)));
+    body.appendChild(sec);
+  }
+  if (cl.location) {
+    const sec = section('办理地点');
+    sec.appendChild(el('p', 'cl-plain', cl.location));
+    body.appendChild(sec);
+  }
+  if (cl.deadline) {
+    const sec = section('时限 / 截止');
+    sec.appendChild(el('p', 'cl-plain', cl.deadline));
+    body.appendChild(sec);
+  }
+  if (cl.notes && cl.notes.length) {
+    const sec = section('注意事项');
+    const ul = el('ul', 'cl-notes');
+    cl.notes.forEach(n => ul.appendChild(el('li', '', n)));
+    sec.appendChild(ul);
+    body.appendChild(sec);
+  }
+  card.appendChild(body);
+  return card;
+}
+
+function renderSources(sources) {
+  if (!sources || !sources.length) return null;
+  const box = el('div', 'sources');
+  box.appendChild(el('div', 'sources-title', '原文出处'));
+  sources.forEach(s => {
+    const a = document.createElement('a');
+    a.className = 'source-link';
+    a.href = s.url;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.textContent = s.title;
+    box.appendChild(a);
+  });
+  return box;
+}
+
+function postFeedback(answerId, question, rating, comment, row) {
+  fetch('/api/feedback', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      answer_id: answerId,
+      rating: rating,
+      comment: comment || '',
+      question: question || '',
+      session_id: sessionId
+    })
+  }).then(r => {
+    if (!r.ok) throw new Error('bad status');
+    row.innerHTML = '';
+    row.appendChild(el('span', 'fb-thanks', '已记录，谢谢你的反馈。'));
+  }).catch(() => {
+    row.innerHTML = '';
+    row.appendChild(el('span', 'fb-thanks', '反馈提交失败，稍后再试。'));
+  });
+}
+
+function renderFeedback(answerId, question) {
+  const row = el('div', 'feedback');
+  row.appendChild(el('span', '', '这条回答有帮助吗？'));
+  const up = el('button', 'fb-btn', '有用');
+  const down = el('button', 'fb-btn', '没用');
+  up.type = 'button';
+  down.type = 'button';
+  row.appendChild(up);
+  row.appendChild(down);
+
+  const commentBox = el('div', 'fb-comment');
+  const ta = document.createElement('textarea');
+  ta.maxLength = 300;
+  ta.placeholder = '哪里不清楚或有错？可选填一句…';
+  const actions = el('div', 'fb-actions');
+  const submit = el('button', 'fb-submit', '提交');
+  const cancel = el('button', 'fb-cancel', '取消');
+  submit.type = 'button';
+  cancel.type = 'button';
+  actions.appendChild(submit);
+  actions.appendChild(cancel);
+  commentBox.appendChild(ta);
+  commentBox.appendChild(actions);
+  row.appendChild(commentBox);
+
+  up.addEventListener('click', () => {
+    up.classList.add('selected');
+    postFeedback(answerId, question, 1, '', row);
+  });
+  down.addEventListener('click', () => {
+    down.classList.add('selected');
+    up.classList.remove('selected');
+    commentBox.classList.add('show');
+    ta.focus();
+  });
+  cancel.addEventListener('click', () => {
+    commentBox.classList.remove('show');
+    down.classList.remove('selected');
+  });
+  submit.addEventListener('click', () => {
+    postFeedback(answerId, question, -1, ta.value.trim(), row);
+  });
+
+  return row;
+}
+
+function addBot(data, question) {
+  const msg = el('div', 'msg bot');
+  msg.appendChild(el('div', 'avatar', '汕'));
+  const bubble = el('div', 'bubble' + (data.no_hit ? ' refuse' : ''));
+
+  bubble.appendChild(el('div', 'answer', data.answer || '没有返回内容。'));
+
+  const cl = renderChecklist(data.checklist);
+  if (cl) bubble.appendChild(cl);
+
+  const sources = renderSources(data.sources);
+  if (sources) bubble.appendChild(sources);
+
+  if (data.answer_id) bubble.appendChild(renderFeedback(data.answer_id, question));
+
+  msg.appendChild(bubble);
+  chat.appendChild(msg);
+  scrollBottom();
+}
+
+async function ask(text) {
+  const q = (text || qBox.value || '').trim();
+  if (!q || busy) return;
+  qBox.value = '';
+  busy = true;
+  sendBtn.disabled = true;
+  hideWelcome();
+  addUser(q);
+  const loading = addLoading();
+
+  try {
+    const resp = await fetch('/api/ask', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question: q, session_id: sessionId })
+    });
+    const data = await resp.json().catch(() => ({}));
+    loading.remove();
+    if (!resp.ok) {
+      addError(data.error || '服务暂时不可用，请稍后再试。');
+      return;
+    }
+    addBot(data, q);
+  } catch (e) {
+    loading.remove();
+    addError('网络连接失败，请检查网络后重试。');
+  } finally {
+    busy = false;
+    sendBtn.disabled = false;
+    qBox.focus();
+  }
+}
+
+document.getElementById('chips').addEventListener('click', e => {
+  const chip = e.target.closest('.chip');
+  if (chip) ask(chip.dataset.q);
+});
+
+sendBtn.addEventListener('click', () => ask());
+qBox.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    ask();
+  }
+});
+</script>
+</body>
+</html>

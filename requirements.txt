@@ -1,0 +1,8 @@
+sentence-transformers>=3.0
+fastapi>=0.110
+uvicorn[standard]>=0.29
+jieba>=0.42
+rank_bm25>=0.2.2
+numpy
+# 可选：本地没有 models/ 时从魔搭源下载向量模型
+modelscope>=1.15
