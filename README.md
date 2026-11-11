@@ -67,6 +67,12 @@ set LLM_API_KEY=你的Key
 
 打开 <http://127.0.0.1:8012>。
 
+线上/沙箱启动用 `run_site.py`，它读取平台注入的 `PORT` 并绑定 `0.0.0.0`：
+
+```bash
+python run_site.py
+```
+
 ## 预算与成本
 
 - 总预算：`P12_TOTAL_BUDGET_CNY=2.0`
