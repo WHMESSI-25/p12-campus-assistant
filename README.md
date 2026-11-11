@@ -3,6 +3,7 @@
 把 P6 的校园办事 RAG 升级成给真实用户用的小产品：**回答带原文出处，流程类问题附一张可勾选的办事清单。**
 
 - 产品形态：移动端优先的单页 Web 应用
+- GitHub：<https://github.com/WHMESSI-25/p12-campus-assistant>
 - 底座：P6 的 112 篇去重语料、415 个检索块、向量 + BM25 混合检索
 - 目标：5 个真实用户、5 条反馈、至少 1 轮迭代
 - 预算：**总计 ¥2**（含开发测试与试用）
@@ -102,6 +103,7 @@ python run_site.py
 
 ```
 app.py                 FastAPI 服务与反馈接口
+run_site.py            线上启动入口（读取 PORT，绑定 0.0.0.0）
 kb/config.py           参数、提示词、预算配置
 kb/retrieve.py         混合检索与预热
 kb/generate.py         结构化生成、预算、缓存、拒答收口
@@ -114,6 +116,8 @@ tests/                 15 个单元/接口测试
 eval/core10.jsonl      核心 10 题
 scripts/check_core10.py 验收入口
 docs/任务书.md         P12 任务书 v1.0
+docs/核心10验收.md     核心 10 题人工验收记录
+RETROSPECTIVE.md       复盘
 ```
 
 ## 项目状态（2026-11-11）
